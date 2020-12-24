@@ -32,7 +32,8 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
-                        // inBound，处理读数据的逻辑链
+                        // inBound，处理读数据的逻辑链、
+                        ch.pipeline().addLast(new ServerHandler());
                         ch.pipeline().addLast(new InBoundHandlerA());
                         ch.pipeline().addLast(new InBoundHandlerB());
                         ch.pipeline().addLast(new InBoundHandlerC());
