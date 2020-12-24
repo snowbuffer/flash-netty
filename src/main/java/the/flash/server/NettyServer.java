@@ -24,6 +24,7 @@ public class NettyServer {
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel ch) {
+                        System.out.println("initChannel");
                         ch.pipeline().addLast(new FirstServerHandler());
                     }
                 });
